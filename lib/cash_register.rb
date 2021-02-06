@@ -39,7 +39,7 @@ class CashRegister
       @total = 0.0
       @total
     else
-      @total = @totals
+      @total = @totals.last
       @total
     end
   end
