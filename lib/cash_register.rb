@@ -2,17 +2,24 @@ require 'pry'
 
 class CashRegister
 
-  attr_accessor :total, :discount, :price, :items
+  attr_accessor :total
+  attr_reader :discount
 
-  def initialize(discount = 0)
+  def initialize(discount =nil)
     @total = 0
     @discount = discount
-    @items = []
+    @@items = []
+    @@totals = []
   end
 
-  def add_item(item, price, quantity = 1)
-    @price = price
+  def add_item(title, price, quantity = 1)
     @total += price * quantity
+    quantity.times do
+      @@items << title
+    end
+    @@totals << total
+  end
+  
     if quantity > 1
       counter = 0
       while counter < quantity
