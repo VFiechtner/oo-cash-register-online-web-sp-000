@@ -19,26 +19,18 @@ class CashRegister
     end
     @@totals << total
   end
-  
-    if quantity > 1
-      counter = 0
-      while counter < quantity
-        @items << items
-        counter += 1
-      end
+
+  def apply_discount
+    if @discount == nil
+      return "There is no discount to apply."
     else
-      @items << item
+      @total -= !total * @discount / 100
+      return "After the discount, the total comes to $#{total}."
     end
   end
 
-  def apply_discount
-    if @discount > 0
-      @to_take_off = (price * discount)/100
-      @total -= @to_take_off
-      return "After the discount, the total comes to $#{total}."
-    else
-      return "There is no discount to apply."
-    end
+  def items
+    @@items
   end
 
   def void_last_transaction
